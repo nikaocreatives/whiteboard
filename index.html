@@ -62,8 +62,8 @@
       var canvas = document.getElementById('draw');
       var ctx = canvas.getContext('2d');
 
-      canvas.width = 2200;
-      canvas.height = 1600;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
       ctx.lineJoin = 'round';
       ctx.lineCap = 'round';

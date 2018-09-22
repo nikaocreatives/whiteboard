@@ -62,8 +62,8 @@
       var canvas = document.getElementById('draw');
       var ctx = canvas.getContext('2d');
 
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = 2200;
+      canvas.height = 1600;
 
       ctx.lineJoin = 'round';
       ctx.lineCap = 'round';
@@ -95,15 +95,6 @@
       canvas.addEventListener('mouseup', () => isDrawing = false);
       canvas.addEventListener('mouseout', () => isDrawing = false);
 
-      canvas.addEventListener("touchmove", draw);
-      canvas.addEventListener("touchend", () => isDrawing = false);
-      canvas.addEventListener("touchcancel", () => isDrawing = false);
-
-
-
-
-
-
       function clearCanvas() {
         console.log('cleared');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -129,20 +120,6 @@
         var image = canvas.toDataURL("image/png");
         el.href = image;
       };
-
-
-      // initialize();
-      //
-      // function initialize() {
-      //   window.addEventListener('resize', resizeCanvas, false);
-      //   resizeCanvas();
-      // };
-      //
-      // function resizeCanvas() {
-      //   canvas.width = window.innerWidth;
-      //   canvas.height = window.innerHeight;
-      //   draw();
-      // };
     </script>
   </body>
 

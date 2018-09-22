@@ -15,7 +15,6 @@ var drawingApp = (function () {
 
 		// Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
 		init = function () {
-
 			// Create the canvas (Neccessary for IE because it doesn't know what a canvas element is)
 			var canvasDiv = document.createElement('canvasDiv');
 			canvas = document.createElement('canvas');
@@ -31,27 +30,20 @@ var drawingApp = (function () {
 			createUserEvents();
 
 			document.getElementById('clear').addEventListener('click', function(){
-			clickX = new Array();
-			clickY = new Array();
-			clickDrag = new Array();
-			clearCanvas(); 
-		});
-
+				clickX = new Array();
+				clickY = new Array();
+				clickDrag = new Array();
+				clearCanvas();
+			});
 		},
 
 		// Clears the canvas.
 		clearCanvas = function () {
-
 			context.clearRect(0, 0, canvasWidth, canvasHeight);
-
 		},
 
 		// Adds a point to the drawing array.
-		// @param x
-		// @param y
-		// @param dragging
 		addClick = function (x, y, dragging) {
-
 			clickX.push(x);
 			clickY.push(y);
 			clickSize.push(curSize);
@@ -67,9 +59,9 @@ var drawingApp = (function () {
 			context.strokeStyle = "black";
 			context.lineJoin = "round";
 			context.lineWidth = radius;
-					
+
 			for(var i=0; i < clickX.length; i++)
-			{		
+			{
 				context.beginPath();
 				if(clickDrag[i] && i){
 					context.moveTo(clickX[i-1], clickY[i-1]);
@@ -99,10 +91,10 @@ var drawingApp = (function () {
 			},
 
 			drag = function (e) {
-				
+
 				var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft,
 					mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop;
-				
+
 				if (paint) {
 					addClick(mouseX, mouseY, true);
 					redraw();
@@ -133,7 +125,7 @@ var drawingApp = (function () {
 			canvas.addEventListener("touchcancel", cancel, false);
 		};
 
-		
+
 	return {
 		init: init
 	};

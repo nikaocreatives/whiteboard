@@ -20,8 +20,8 @@
 
   <body>
     <div id="container">
+      <div id="canvasDiv"></div>
       <div id="vue">
-        <canvas id="draw"></canvas>
 
         <div class="logo">
           <img src="images/whiteboard-logo.png" alt=""></img>
@@ -50,6 +50,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.1/vue.min.js"></script>
+    <script type="text/javascript" src="draw.js"></script>
 
     <script>
       var app = new Vue({
@@ -59,76 +60,74 @@
         }
       });
 
-      var canvas = document.getElementById('draw');
-      var ctx = canvas.getContext('2d');
+      drawingApp.init();
 
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      ctx.lineJoin = 'round';
-      ctx.lineCap = 'round';
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = '#25A3FF';
-
-      let isDrawing = false;
-      let lastX = 0;
-      let lastY = 0;
-
-      function draw(e) {
-        // stop the function if they are not mouse down
-        if (!isDrawing) return;
-        //listen for mouse move event
-        console.log(e);
-        ctx.beginPath();
-        ctx.moveTo(lastX, lastY);
-        ctx.lineTo(e.offsetX, e.offsetY);
-        ctx.stroke();
-        [lastX, lastY] = [e.offsetX, e.offsetY];
-      };
-
-      canvas.addEventListener('mousedown', (e) => {
-        isDrawing = true;
-        [lastX, lastY] = [e.offsetX, e.offsetY];
-      });
-
-      canvas.addEventListener('mousemove', draw);
-      canvas.addEventListener('mouseup', () => isDrawing = false);
-      canvas.addEventListener('mouseout', () => isDrawing = false);
-
-      canvas.addEventListener("touchmove", draw);
-      canvas.addEventListener("touchend", () => isDrawing = false);
-      canvas.addEventListener("touchcancel", () => isDrawing = false);
+      // var canvas = document.getElementById('draw');
+      // var ctx = canvas.getContext('2d');
+      //
+      // canvas.width = window.innerWidth;
+      // canvas.height = window.innerHeight;
+      //
+      // ctx.lineJoin = 'round';
+      // ctx.lineCap = 'round';
+      // ctx.lineWidth = 4;
+      // ctx.strokeStyle = '#25A3FF';
+      //
+      // let isDrawing = false;
+      // let lastX = 0;
+      // let lastY = 0;
+      //
+      // function draw(e) {
+      //   // stop the function if they are not mouse down
+      //   if (!isDrawing) return;
+      //   //listen for mouse move event
+      //   console.log(e);
+      //   ctx.beginPath();
+      //   ctx.moveTo(lastX, lastY);
+      //   ctx.lineTo(e.offsetX, e.offsetY);
+      //   ctx.stroke();
+      //   [lastX, lastY] = [e.offsetX, e.offsetY];
+      // };
+      //
+      // canvas.addEventListener('mousedown', (e) => {
+      //   isDrawing = true;
+      //   [lastX, lastY] = [e.offsetX, e.offsetY];
+      // });
+      //
+      // canvas.addEventListener('mousemove', draw);
+      // canvas.addEventListener('mouseup', () => isDrawing = false);
+      // canvas.addEventListener('mouseout', () => isDrawing = false);
 
 
 
 
 
 
-      function clearCanvas() {
-        console.log('cleared');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      };
-
-      function toggleSizes() {
-        document.getElementsByClassName('radius-sizes')[0].classList.toggle('toggle');
-      };
-
-      function updateSize() {
-        var radiusValue = document.getElementById('size').value;
-        ctx.lineWidth = radiusValue;
-        document.getElementById('radiusSize').style.width = radiusValue;
-        document.getElementById('radiusSize').style.height = radiusValue;
-      };
-
-      function updateColor() {
-        var colorValue = document.getElementById('color').value;
-        ctx.strokeStyle = colorValue;
-      };
-
-      downloadCanvas = function(el) {
-        var image = canvas.toDataURL("image/png");
-        el.href = image;
-      };
+      // function clearCanvas() {
+      //   console.log('cleared');
+      //   ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // };
+      //
+      // function toggleSizes() {
+      //   document.getElementsByClassName('radius-sizes')[0].classList.toggle('toggle');
+      // };
+      //
+      // function updateSize() {
+      //   var radiusValue = document.getElementById('size').value;
+      //   ctx.lineWidth = radiusValue;
+      //   document.getElementById('radiusSize').style.width = radiusValue;
+      //   document.getElementById('radiusSize').style.height = radiusValue;
+      // };
+      //
+      // function updateColor() {
+      //   var colorValue = document.getElementById('color').value;
+      //   ctx.strokeStyle = colorValue;
+      // };
+      //
+      // downloadCanvas = function(el) {
+      //   var image = canvas.toDataURL("image/png");
+      //   el.href = image;
+      // };
 
 
       // initialize();

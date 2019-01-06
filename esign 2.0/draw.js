@@ -4,15 +4,8 @@ var drawingApp = (function () {
 
 	var canvas,
 		context,
-		canvasWidth = 2200,
-		canvasHeight = 1600,
-		// colorPurple = "#cb3594",
-		// colorGreen = "#659b41",
-		// colorYellow = "#ffcf33",
-		// colorBrown = "#986928",
-		// curColor = colorValue,
-		clickColor = new Array(),
-		clickSize = new Array(),
+		canvasWidth = 600,
+		canvasHeight = 250,
 		clickX = [],
 		clickY = [],
 		clickSize = [],
@@ -38,21 +31,19 @@ var drawingApp = (function () {
 			createUserEvents();
 
 			document.getElementById('clear').addEventListener('click', function(){
-				clickX = new Array();
-				clickY = new Array();
-				clickDrag = new Array();
-				clearCanvas();
-				location.reload();
-			});
+			clickX = new Array();
+			clickY = new Array();
+			clickDrag = new Array();
+			clearCanvas();
+		});
 
-			document.getElementById('color').addEventListener('onchange', function(){
-				updateColor();
-			});
 		},
 
 		// Clears the canvas.
 		clearCanvas = function () {
+
 			context.clearRect(0, 0, canvasWidth, canvasHeight);
+
 		},
 
 		// Adds a point to the drawing array.
@@ -60,14 +51,11 @@ var drawingApp = (function () {
 		// @param y
 		// @param dragging
 		addClick = function (x, y, dragging) {
-			var curColor = document.getElementById('color').value;
-			// var curSize = document.getElementById('size').value;
+
 			clickX.push(x);
 			clickY.push(y);
 			clickSize.push(curSize);
 			clickDrag.push(dragging);
-			clickColor.push(curColor);
-			// clickSize.push(curSize);
 		},
 
 		// Redraws the canvas.
@@ -75,10 +63,10 @@ var drawingApp = (function () {
 
 			clearCanvas();
 
-			context.lineWidth = 5;
-			// context.strokeStyle = "black";
+			var radius = 5;
+			context.strokeStyle = "black";
 			context.lineJoin = "round";
-			context.lineCap = 'round';
+			context.lineWidth = radius;
 
 			for(var i=0; i < clickX.length; i++)
 			{
@@ -90,10 +78,10 @@ var drawingApp = (function () {
 				}
 				context.lineTo(clickX[i], clickY[i]);
 				context.closePath();
-				context.strokeStyle = clickColor[i];
-				// context.lineWidth = clickSize[i];
 				context.stroke();
 			}
+
+
 		},
 
 		// Add mouse and touch event listeners to the canvas

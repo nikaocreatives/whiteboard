@@ -152,15 +152,15 @@ function redoCanvas() {
 
 function toggleUndoRedoButtons() {
   if (historyCount === count) {
-    document.getElementById('undoButton').disabled = true;
+    document.getElementById('undoButton').setAttribute("style", "opacity: .25;");
   } else {
-    document.getElementById('undoButton').disabled = false;
+    document.getElementById('undoButton').setAttribute("style", "opacity: 1;");
   }
 
   if (count === 0) {
-    document.getElementById('redoButton').disabled = true;
+    document.getElementById('redoButton').setAttribute("style", "opacity: .25;");
   } else {
-    document.getElementById('redoButton').disabled = false;
+    document.getElementById('redoButton').setAttribute("style", "opacity: 1;");
   }
 }
 
